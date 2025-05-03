@@ -11,7 +11,17 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = createClient();
-    await supabase.auth.exchangeCodeForSession(code);
+    const { data: { user }, error } = await supabase.auth.exchangeCodeForSession(code);
+
+    if (!error && user) {
+      // Get the user type from metadata
+      const userType = user.user_metadata?.user_type || 'patient';
+
+      // Update the user's metadata if needed
+      await supabase.auth.updateUser({
+        data: { user_type: userType }
+      });
+    }
   }
 
   // URL to redirect to after sign up process completes

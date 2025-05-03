@@ -34,6 +34,7 @@ export default function Login({
     const origin = headers().get('origin')
     const email = formData.get('email') as string
     const password = formData.get('password') as string
+    const userType = formData.get('userType') as 'patient' | 'doctor'
     const supabase = createClient()
 
     const { error } = await supabase.auth.signUp({
@@ -41,6 +42,9 @@ export default function Login({
       password,
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
+        data: {
+          user_type: userType,
+        },
       },
     })
 
@@ -94,9 +98,33 @@ export default function Login({
           placeholder="••••••••"
           required
         />
+        <div className="mb-6">
+          <label className="text-md block mb-2">Sign up as</label>
+          <div className="flex gap-4">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="userType"
+                value="patient"
+                defaultChecked
+                className="mr-2"
+              />
+              Patient
+            </label>
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="userType"
+                value="doctor"
+                className="mr-2"
+              />
+              Doctor
+            </label>
+          </div>
+        </div>
         <SubmitButton
           formAction={signIn}
-          className="bg-green-400 dark:bg-green-900  rounded-md px-4 py-2 text-foreground mb-2"
+          className="bg-green-400 dark:bg-green-900 rounded-md px-4 py-2 text-foreground mb-2"
           pendingText="Signing In..."
         >
           Sign In

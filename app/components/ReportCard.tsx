@@ -143,7 +143,7 @@ export default function ReportCard({ report: initialReport }: { report: Report }
         </div>
 
         <div className="relative">
-          <p className="text-sm text-gray-600 line-clamp-3">
+          <p className="text-sm text-gray-500 line-clamp-6">
             {previewContent}
           </p>
           <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent" />
@@ -154,7 +154,7 @@ export default function ReportCard({ report: initialReport }: { report: Report }
             <svg className="h-4 w-4 text-gray-400 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            <time className="text-xs text-gray-500">
+            <time className="text-sm text-gray-500">
               {new Date(report.created_at).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",

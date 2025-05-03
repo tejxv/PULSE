@@ -6,12 +6,14 @@ import { formatDistanceToNow } from 'date-fns'
 import { ArrowLeft } from 'lucide-react'
 import PrintButton from './components/PrintButton'
 import ReportContent from './components/ReportContent'
+import { PostgrestSingleResponse } from '@supabase/supabase-js'
 
 interface Report {
   id: number
   created_at: string
   analysis: string
   user_id: string
+  is_visible_to_doctors: boolean
 }
 
 interface PageParams {
@@ -20,16 +22,24 @@ interface PageParams {
   }
 }
 
-// Fetch report data based on report ID and user ID
-async function fetchReport(id: string, user_id: string): Promise<Report | null> {
+// Fetch report data based on report ID and user type
+async function fetchReport(id: string, user_id: string, isDoctor: boolean): Promise<Report | null> {
   const supabase = createClient()
 
-  const { data: report, error } = await supabase
+  let query = supabase
     .from('reports')
     .select('*')
-    .eq('user_id', user_id)
     .eq('id', id)
-    .single()
+
+  // If user is not a doctor, only allow them to see their own reports
+  if (!isDoctor) {
+    query = query.eq('user_id', user_id)
+  } else {
+    // For doctors, only show reports that are visible to doctors
+    query = query.eq('is_visible_to_doctors', true)
+  }
+
+  const { data: report, error }: PostgrestSingleResponse<Report> = await query.single()
 
   if (error) {
     console.error('Error fetching report:', error)
@@ -52,7 +62,10 @@ export default async function ReportPage({ params }: PageParams) {
     return redirect('/login')
   }
 
-  const report = await fetchReport(id, user.id)
+  // Check if user is a doctor
+  const isDoctor = user.user_metadata?.user_type === 'doctor'
+
+  const report = await fetchReport(id, user.id, isDoctor)
 
   if (!report) {
     return (
@@ -68,7 +81,7 @@ export default async function ReportPage({ params }: PageParams) {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <Link 
-            href="/" 
+            href="/dashboard" 
             className="flex items-center text-blue-600 hover:text-blue-800 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
