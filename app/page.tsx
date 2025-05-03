@@ -26,7 +26,7 @@ export default async function Index() {
               <div className="sm:flex sm:items-start sm:justify-between">
                 <div>
                   <h3 className="text-lg leading-6 font-medium text-gray-900">
-                    Get started with PULSE
+                    Get started with PICO
                   </h3>
                   <div className="mt-2 max-w-xl text-sm text-gray-500">
                     <p>
