@@ -50,17 +50,6 @@ export default async function Index() {
       </div>
 
       <footer className="w-full border-t bg-white border-t-foreground/10 p-8 flex justify-center text-center text-xs">
-        <p>
-          Meta x Pragati · Developed by{" "}
-          <a
-            href="#"
-            target="_blank"
-            className="font-bold hover:underline"
-            rel="noreferrer"
-          >
-            Code for Cure
-          </a>
-        </p>
       </footer>
     </div>
   )
