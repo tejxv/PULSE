@@ -41,15 +41,15 @@ export default async function DashboardPage() {
         <main className="flex-1 flex flex-col gap-6">
           {!isDoctor && (
             <>
-              <Link
-                href="/analyse"
-                className="p-4 w-full bg-blue-600 tracking-wide text-center rounded-2xl hover:bg-black text-white shadow-xl hover:shadow-2xl hover:ring-4 hover:ring-black ring-1 ring-blue-700 transition-all"
-              >
-                Take the <span className="font-bold">Health Questionnaire</span>
-              </Link>
-              <p className="text-base text-gray-500 text-center">
-                Helps your doctor give you better care, faster.
-              </p>
+          <Link
+            href="/analyse"
+            className="p-4 w-full bg-blue-600 tracking-wide text-center rounded-2xl hover:bg-black text-white shadow-xl hover:shadow-2xl hover:ring-4 hover:ring-black ring-1 ring-blue-700 transition-all"
+          >
+            Take the <span className="font-bold">Health Questionnaire</span>
+          </Link>
+          <p className="text-base text-gray-500 text-center">
+            Helps your doctor give you better care, faster.
+          </p>
             </>
           )}
 

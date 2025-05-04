@@ -10,6 +10,7 @@
     --foreground: 200 50% 3%;
   }
 
+  /* Dark mode styles - temporarily disabled
   @media (prefers-color-scheme: dark) {
     :root {
       --background: 200 50% 3%;
@@ -18,6 +19,7 @@
       --foreground: 200 20% 96%;
     }
   }
+  */
 }
 
 @layer base {
