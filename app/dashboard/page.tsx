@@ -67,7 +67,11 @@ export default async function DashboardPage() {
                 {reports
                   .filter((report) => report.analysis)
                   .map((report) => (
-                    <ReportCard key={report.id} report={report} />
+                    <ReportCard 
+                      key={report.id} 
+                      report={report} 
+                      userType={isDoctor ? "doctor" : "patient"}
+                    />
                   ))}
               </div>
             </div>

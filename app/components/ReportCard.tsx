@@ -17,8 +17,10 @@ interface Report {
 
 export default function ReportCard({
   report: initialReport,
+  userType = "patient"
 }: {
   report: Report;
+  userType?: "doctor" | "patient";
 }) {
   const [report, setReport] = useState(initialReport);
   const supabase = createClient();
@@ -149,52 +151,56 @@ export default function ReportCard({
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <button
-              onClick={toggleUrgent}
-              className={`p-1 rounded-full transition-colors ${
-                report.is_urgent
-                  ? "text-red-600 bg-red-50 hover:bg-red-100"
-                  : "text-gray-400 hover:text-red-600 hover:bg-red-50"
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={toggleBookmark}
-              className={`p-1 rounded-full transition-colors ${
-                report.is_bookmarked
-                  ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
-                  : "text-gray-400 hover:text-blue-600 hover:bg-blue-50"
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill={report.is_bookmarked ? "currentColor" : "none"}
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
-                />
-              </svg>
-            </button>
+            {userType === "doctor" && (
+              <>
+                <button
+                  onClick={toggleUrgent}
+                  className={`p-1 rounded-full transition-colors ${
+                    report.is_urgent
+                      ? "text-red-600 bg-red-50 hover:bg-red-100"
+                      : "text-gray-400 hover:text-red-600 hover:bg-red-50"
+                  }`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={toggleBookmark}
+                  className={`p-1 rounded-full transition-colors ${
+                    report.is_bookmarked
+                      ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
+                      : "text-gray-400 hover:text-blue-600 hover:bg-blue-50"
+                  }`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill={report.is_bookmarked ? "currentColor" : "none"}
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                    />
+                  </svg>
+                </button>
+              </>
+            )}
             <span className="text-xs text-gray-500">#{report.id}</span>
           </div>
         </div>
