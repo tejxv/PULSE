@@ -6,6 +6,7 @@ import { formatDistanceToNow } from 'date-fns'
 import { ArrowLeft } from 'lucide-react'
 import PrintButton from './components/PrintButton'
 import ReportContent from './components/ReportContent'
+import Footer from '../../components/Footer'
 import { PostgrestSingleResponse } from '@supabase/supabase-js'
 
 interface Report {
@@ -19,6 +20,9 @@ interface Report {
 interface PageParams {
   params: {
     id: string
+  }
+  searchParams: {
+    new?: string
   }
 }
 
@@ -50,8 +54,9 @@ async function fetchReport(id: string, user_id: string, isDoctor: boolean): Prom
 }
 
 // The page component for displaying the report
-export default async function ReportPage({ params }: PageParams) {
+export default async function ReportPage({ params, searchParams }: PageParams) {
   const { id } = params
+  const isNewReport = searchParams.new === 'true'
   const supabase = createClient()
 
   const {
@@ -77,15 +82,35 @@ export default async function ReportPage({ params }: PageParams) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      {isNewReport && (
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg shadow-sm p-4 mt-6">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 bg-emerald-100 rounded-full p-2 mr-4">
+                <svg className="h-5 w-5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-emerald-800">Report generated successfully!</h3>
+                <p className="text-sm text-emerald-700">
+                  You can now view your detailed health analysis below.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="container mx-auto px-4 sm:px-6 py-8 max-w-4xl">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <Link 
             href="/dashboard" 
-            className="flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+            className="flex items-center text-blue-600 hover:text-blue-800 transition-colors group"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            <span>Back to reports</span>
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:transform group-hover:-translate-x-1 transition-transform duration-200" />
+            <span className="group-hover:underline">Back to reports</span>
           </Link>
           <PrintButton />
         </div>
@@ -112,9 +137,12 @@ export default async function ReportPage({ params }: PageParams) {
             </span>
           </div>
 
-          <ReportContent content={report.analysis} />
+          <div className="prose max-w-none">
+            <ReportContent content={report.analysis} />
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
