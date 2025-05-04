@@ -81,7 +81,7 @@ export default async function ReportPage({ params, searchParams }: PageParams) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen w-full bg-gray-50">
       {isNewReport && (
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
           <div className="bg-emerald-50 border border-emerald-200 rounded-lg shadow-sm p-4 mt-6">
