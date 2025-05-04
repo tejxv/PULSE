@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import logo from '@/public/logo/pico.svg'
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center space-x-2">
               <Image
-                src="/pico.svg"
+                src={logo}
                 alt="PICO Logo"
                 width={120}
                 height={32}

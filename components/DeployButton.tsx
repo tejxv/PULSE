@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import logo from '@/public/logo/pico.svg'
 
 export default function DeployButton() {
   return (
@@ -8,7 +9,7 @@ export default function DeployButton() {
       rel="noreferrer"
     >
     <Image
-      src="/pico.svg"
+      src={logo}
       alt="PICO Logo"
       width={120}
       height={32}
