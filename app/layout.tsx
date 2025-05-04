@@ -21,9 +21,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={GeistSans.className}>
-      <head>
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-      </head>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
           <Nav />
