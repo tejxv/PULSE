@@ -1,8 +1,7 @@
 "use client"
 
-import Image from 'next/image'
 import Link from 'next/link'
-import logo from '@/public/logo/pico.svg'
+import Logo from './Logo'
 
 export default function Footer() {
   return (
@@ -12,13 +11,7 @@ export default function Footer() {
           {/* Logo and Team Name */}
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center space-x-2">
-              <Image
-                src={logo}
-                alt="PICO Logo"
-                width={120}
-                height={32}
-                className="rounded-lg"
-              />
+              <Logo />
             </div>
             <p className="mt-2 text-sm text-gray-500">
               A platform for AI-powered healthcare
