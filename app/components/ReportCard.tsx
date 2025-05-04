@@ -210,7 +210,7 @@ export default function ReportCard({
           <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent" />
         </div>
 
-        <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+        <div className="mt-4 pt-5 border-t border-gray-100 flex items-center justify-between">
           <div className="flex items-center">
             <svg
               className="h-4 w-4 text-gray-400 mr-1"

@@ -263,7 +263,7 @@ export default function MedForm({ userId }: { userId: string }) {
       <div key={index} className="py-2">
         <label
           htmlFor={`qna[${category.category}][${index}][answer]`}
-          className="font-medium pt-4 pb-1"
+          className={`font-medium pt-4 pb-1 ${followUpQuestions.length > 0 ? 'opacity-60' : ''}`}
         >
           {question.question}
         </label>
@@ -271,7 +271,10 @@ export default function MedForm({ userId }: { userId: string }) {
           type="text"
           name={`qna[${category.category}][${index}][answer]`}
           id={`qna[${category.category}][${index}][answer]`}
-          className="px-3 mt-2 py-2.5 border h-auto bg-transparent bg-white w-full opacity-80 border-gray-200 hover:border-gray-300 dark:text-gray-300 outline-none dark:hover:border-gray-700 appearance-none transition-all shadow-sm dark:border-gray-800 dark:bg-gray-900 rounded-xl"
+          className={`px-3 mt-2 py-2.5 border h-auto bg-transparent bg-white w-full border-gray-200 hover:border-gray-300 outline-none appearance-none transition-all shadow-sm rounded-xl ${
+            followUpQuestions.length > 0 ? 'opacity-60 cursor-not-allowed' : 'opacity-80'
+          }`}
+          disabled={followUpQuestions.length > 0}
         />
       </div>
     ))

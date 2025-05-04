@@ -32,13 +32,7 @@ export default function Footer() {
                 Watch Demo
               </Link>
               <Link 
-                href="/#" 
-                className="text-sm text-gray-500 hover:text-gray-900 block"
-              >
-                About Project
-              </Link>
-              <Link 
-                href="#" 
+                href="https://github.com/tejxv/PULSE" 
                 target="_blank"
                 className="text-sm text-gray-500 hover:text-gray-900 block"
               >
@@ -58,21 +52,28 @@ export default function Footer() {
                 target="_blank"
                 className="text-sm text-gray-500 hover:text-gray-900 block"
               >
-                Name
+                Harsh Vasisht
               </Link>
               <Link 
                 href="#" 
                 target="_blank"
                 className="text-sm text-gray-500 hover:text-gray-900 block"
               >
-                Name
+                Tejas Upadhyay
               </Link>
               <Link 
                 href="#" 
                 target="_blank"
                 className="text-sm text-gray-500 hover:text-gray-900 block"
               >
-                Name
+                Parinay Seth
+              </Link>
+              <Link 
+                href="#" 
+                target="_blank"
+                className="text-sm text-gray-500 hover:text-gray-900 block"
+              >
+                Yash Manglik
               </Link>
             </div>
           </div>
