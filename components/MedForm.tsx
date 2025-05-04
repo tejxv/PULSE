@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import Markdown from "react-markdown"
 import { createClient } from "@/utils/supabase/client"
 import { useRouter } from "next/navigation"
+import { customFetch } from "@/app/utils/api"
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 
@@ -141,7 +142,7 @@ export default function MedForm({ userId }: { userId: string }) {
         setStatus("getting-followup");
         
         // Get follow-up questions from the API
-        const followUpResponse = await fetch(`${API_BASE_URL}/get_followup_questions`, {
+        const followUpResponse = await customFetch(`${API_BASE_URL}/get_followup_questions`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -184,7 +185,7 @@ export default function MedForm({ userId }: { userId: string }) {
       }
 
       // Get the analysis from the API
-      const analysisResponse = await fetch(`${API_BASE_URL}/get_summary`, {
+      const analysisResponse = await customFetch(`${API_BASE_URL}/get_summary`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -238,7 +239,7 @@ export default function MedForm({ userId }: { userId: string }) {
 
   const handleFetchDoctorMapping = async (visitId: string) => {
     try {
-      const res = await fetch(`${API_BASE_URL}/get_doctor_mapping`, {
+      const res = await customFetch(`${API_BASE_URL}/get_doctor_mapping`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
